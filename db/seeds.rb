@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+products_data = ActiveSupport::JSON.decode(File.read( "#{File.dirname(__FILE__)}/products.json"))
+
+products_data['products'].each do |product|
+	Product.create!(product)
+end
+
