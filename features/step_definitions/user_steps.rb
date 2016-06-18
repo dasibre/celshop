@@ -1,11 +1,23 @@
-Given(/^I am not signed in$/) do
-	visit signup_path
+require 'pry'
+
+Given(/^I am on user sign up page$/) do
+	visit user_signup_path
 end
 
-When(/^I am on the signup page$/) do
-	pending # Write code here that turns the phrase above into concrete actions
+
+Given(/^I submit form with "([^"]*)" "([^"]*)" "([^"]*)"$/) do |name, email, password|
+	fill_in 'Name', with: name
+	fill_in 'Email', with: email
+	fill_in 'Password', with: password
+	fill_in 'Password confirmation', with: password
+	click_button 'Sign up'
 end
 
-Then(/^I should see 'Sign Up'$/) do
-	pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should see "([^"]*)"$/) do |message|
+	expect(page).to have_content(message)
 end
+
+And(/^I should be logged in as "([^"]*)"$/) do |email|
+	expect(page).to have_content(email)
+end
+

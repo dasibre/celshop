@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+	devise_scope :user do
+    get '/login' => 'devise/sessions#new'
+    get '/signup' => 'devise/registrations#new', as: 'user_signup'
+	end
+
+	devise_for :users, path_names: {sign_up: 'signup', sign_out: 'logout', sign_in: 'login'}
+  root to: 'store#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
