@@ -1,11 +1,17 @@
 Feature: User Signup
 
-  So that I can user shopping cart
+  So that I can use shopping cart
   As a user
   I want to sign up for an account
 
   @wip
-  Scenario: User Signup
-	Given I am not signed in
-    When I am on the signup page
-    Then I should see 'Sign Up'
+  Scenario: Signing Up with valid details
+    Given I am on user sign up page
+    And I submit form with
+      | name       | email            | password |
+      | Test User  | test@example.com | 123456   |
+    Then I should be on store index page
+     And I should be logged in as "test@example.com"
+
+
+
