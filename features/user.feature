@@ -10,11 +10,11 @@ Feature: User Signup
     Then I should see "<message>"
 
     Examples: With valid details
-      | name       | email            | password | message                  |
+      |     name   |      email       | password |       message                 |
       | Test User  | test@example.com | 123456   | Logged in as test@example.com |
 
     Examples: With invalid details
-      | name       | email            | password | message          |
+      |     name   |      email       | password |       message    |
       | Test User  | test-example.com | 123456   | Email is invalid |
 
 
