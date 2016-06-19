@@ -2,7 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://cof feescript.org/
 
-getProduct = (context) ->
+class Modal
+	constructor: (modal) ->
+		@modal = modal
+
+	show: (product)->
+		@modal.find('.modal-title').text(product.name)
+		@modal.find('.modal-body').text(product.desc)
+
+
+getProduct = (context,callback) ->
 	$product = $(context)
 	url = $product.data('url') + '/' + $product.data('id')
 	$.ajax({
@@ -10,18 +19,18 @@ getProduct = (context) ->
 		dataType: 'json',
 		url: url,
 		success: (data) ->
-			return data
+			callback(data)
 	})
 
-displayModalFor = () ->
+displayModal = (modal,product) ->
+	modal.show(product)
 	$('#dialog').modal('show')
 
 init = ->
-	$('.modal').on 'show.bs.modal', () ->
-		modal = $(this)
-		modal.find('.modal-title').text('Hello Nurse')
+	modal = new Modal($('.modal'))
 
 	$('.thumbnail').click ->
-		displayModalFor(getProduct(this))
+		getProduct this, (product) ->
+			displayModal(modal,product)
 
 $(document).ready(init)
