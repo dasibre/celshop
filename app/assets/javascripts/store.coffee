@@ -11,9 +11,6 @@ class Modal
 		@modal.find('.modal-body').text(product.desc)
 		@modal.find('button.add-to-cart').attr( "data-product-id", product.id)
 
-	setButtonId: (id)->
-	  @modal.find('.modal-footer.button.add-to-cart').attr(element,val)
-
 getProduct = (context,callback) ->
 	$product = $(context)
 	url = $product.data('url') + '/' + $product.data('id')
@@ -31,7 +28,9 @@ displayModal = (modal,product) ->
 
 init = ->
 	modal = new Modal($('.modal'))
-
+	#add event to add to cart button
+	#event: on click, get product-id,
+	#make a post request to cart
 	$('.thumbnail').click ->
 		getProduct this, (product) ->
 			displayModal(modal,product)
