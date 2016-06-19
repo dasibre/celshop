@@ -6,10 +6,13 @@ class Modal
 	constructor: (modal) ->
 		@modal = modal
 
-	show: (product)->
+	update: (product)->
 		@modal.find('.modal-title').text(product.name)
 		@modal.find('.modal-body').text(product.desc)
+		@modal.find('button.add-to-cart').attr( "data-product-id", product.id)
 
+	setButtonId: (id)->
+	  @modal.find('.modal-footer.button.add-to-cart').attr(element,val)
 
 getProduct = (context,callback) ->
 	$product = $(context)
@@ -23,7 +26,7 @@ getProduct = (context,callback) ->
 	})
 
 displayModal = (modal,product) ->
-	modal.show(product)
+	modal.update(product)
 	$('#dialog').modal('show')
 
 init = ->
