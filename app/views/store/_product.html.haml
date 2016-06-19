@@ -1,0 +1,7 @@
+.col-sm-6.col-md-4
+  .thumbnail
+    %ul
+      %li=product.name
+      %li=product.brand
+      %li=product.model
+      %li="$#{product_price(product.price)}"

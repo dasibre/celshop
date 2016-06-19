@@ -1,7 +1,8 @@
-- @products.each do |product|
-  =product.name
-  =product.brand
-  =product.model
-  =product.sku
-  =product.description
-  =product.price
+%h2 home page
+.row
+  =link_to '#' do
+    =render partial: 'product', collection: @products
+
+
+
+
