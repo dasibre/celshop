@@ -8,5 +8,5 @@
       .modal-body
         %h2
       .modal-footer
-        =button_tag 'Add to cart', remote: true, class: 'add-to-cart', data: {product_id: 'id'}
+        =button_tag 'Add to cart', remote: true, class: 'add-to-cart', data: {product_id: 'id', url: products_url}
         =button_tag 'close', 'data-dismiss' => 'modal'
