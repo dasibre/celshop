@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 	resources :products, only: [:index, :show]
 
   match '/orders/(:id)' => 'orders#create', via: :post, as: :new_order
-  resources :orders, only: [:create, :update, :destroy]
+
+  resources :orders, only: [:create, :update]
 
   root to: 'store#index'
 
