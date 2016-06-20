@@ -1,14 +1,14 @@
-.container-fluid
-  .navbar-brand
-    =link_to store_name, root_path
-  .navbar-text.navbar-right
-    - if user_signed_in?
-      Logged in as
-      %strong= current_user.email
-      = link_to 'Edit profile', edit_user_registration_path
-      |
-      \#{link_to "Logout", destroy_user_session_path, method: :delete}
-    - else
-      = link_to "Sign up", user_signup_path
-      |
-      \#{link_to "Login", new_user_session_path}
+.navbar-brand
+  =link_to store_name, root_path
+.navbar-text.navbar-right
+  = render 'shared/cart'
+  - if user_signed_in?
+    Logged in as
+    %strong= current_user.email
+    = link_to 'Edit profile', edit_user_registration_path
+    |
+    \#{link_to "Logout", destroy_user_session_path, method: :delete}
+  - else
+    = link_to "Sign up", user_signup_path
+    |
+    \#{link_to "Login", new_user_session_path}
