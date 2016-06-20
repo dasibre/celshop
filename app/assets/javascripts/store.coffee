@@ -42,14 +42,14 @@ getProduct = (context,callback) ->
 
 displayModal = (modal,product) ->
 	modal.setElementAttr('.modal-footer button.add-to-carts','id',product.id)
-	modal.findElement('.modal-footer button.add-to-carts').click () ->
+	modal.findElement('.modal-footer button.add-to-cart').click () ->
 		addItemToCart($(this))
 	modal.update(product)
 	$('#dialog').modal('show')
 
 resetDialog = (modal)->
 	$('#dialog').on('hidden.bs.modal', (event) ->
-		modal.findElement('.modal-footer button.add-to-carts').off())
+		modal.findElement('.modal-footer button.add-to-cart').off())
 
 initApp = ->
 	$('.thumbnail').click ->
