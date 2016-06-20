@@ -6,3 +6,5 @@
       %li=item.product.model
       %li="$#{product_price(item.product.price)}"
 
+      =link_to 'Remove from cart', order_path(item), method: 'put'
+
