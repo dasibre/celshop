@@ -9,7 +9,12 @@ class Modal
 	update: (product)->
 		@modal.find('.modal-title').text(product.name)
 		@modal.find('.modal-body').text(product.desc)
-		@modal.find('button.add-to-cart').attr( "data-product-id", product.id)
+
+	findElement: (el)->
+		@modal.find(el)
+
+	setElementAttr: (el,attribute,val)->
+		$(el).attr(attribute, val)
 
 getProduct = (context,callback) ->
 	$product = $(context)
@@ -22,17 +27,26 @@ getProduct = (context,callback) ->
 			callback(data)
 	})
 
+
 displayModal = (modal,product) ->
+	modal.setElementAttr('.modal-footer button.add-to-cart','id',product.id)
+	modal.findElement('.modal-footer button.add-to-cart').click () ->
+		$item = ($(this))
+		url = $item.data('url')
+		id = $item.attr('id')
+		console.log(id)
 	modal.update(product)
 	$('#dialog').modal('show')
 
-init = ->
-	modal = new Modal($('.modal'))
-	#add event to add to cart button
-	#event: on click, get product-id,
-	#make a post request to cart
+resetDialog = (modal)->
+	$('#dialog').on('hidden.bs.modal', (event) ->
+		modal.findElement('.modal-footer button.add-to-cart').off())
+
+initApp = ->
 	$('.thumbnail').click ->
+		modal = new Modal($('.modal'))
 		getProduct this, (product) ->
 			displayModal(modal,product)
+		resetDialog(modal)
 
-$(document).ready(init)
+$(document).ready(initApp)
