@@ -16,6 +16,18 @@ class Modal
 	setElementAttr: (el,attribute,val)->
 		$(el).attr(attribute, val)
 
+
+addItemToCart = (item)->
+	id =  item.attr('id')
+	url = item.data('url') + '/' + id
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		url: url,
+		success: (data) ->
+			console.log(data)
+	})
+
 getProduct = (context,callback) ->
 	$product = $(context)
 	url = $product.data('url') + '/' + $product.data('id')
@@ -29,18 +41,15 @@ getProduct = (context,callback) ->
 
 
 displayModal = (modal,product) ->
-	modal.setElementAttr('.modal-footer button.add-to-cart','id',product.id)
-	modal.findElement('.modal-footer button.add-to-cart').click () ->
-		$item = ($(this))
-		url = $item.data('url')
-		id = $item.attr('id')
-		console.log(id)
+	modal.setElementAttr('.modal-footer button.add-to-carts','id',product.id)
+	modal.findElement('.modal-footer button.add-to-carts').click () ->
+		addItemToCart($(this))
 	modal.update(product)
 	$('#dialog').modal('show')
 
 resetDialog = (modal)->
 	$('#dialog').on('hidden.bs.modal', (event) ->
-		modal.findElement('.modal-footer button.add-to-cart').off())
+		modal.findElement('.modal-footer button.add-to-carts').off())
 
 initApp = ->
 	$('.thumbnail').click ->
