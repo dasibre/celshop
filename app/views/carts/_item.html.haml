@@ -1,0 +1,8 @@
+#product.col-sm-6.col-md-4
+  =content_tag 'div', id: "#{item.id}", class: 'item-thumbnail', data: {url: order_url(item), id: item.id} do
+    %ul
+      %li=item.product.name
+      %li=item.product.brand
+      %li=item.product.model
+      %li="$#{product_price(item.product.price)}"
+

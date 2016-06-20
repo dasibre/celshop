@@ -1,5 +1,4 @@
--@order_items.each do |item|
-  %ul
-    %li=item.product.name
-    %li=item.product.brand
-    %li=item.product.price
+%h2 Items In Your Cart
+.row
+  =render partial: 'item', collection: @order_items
+  =render partial: 'shared/dialog'
