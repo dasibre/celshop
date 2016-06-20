@@ -1,17 +1,6 @@
-# class Cart
-# 	attr_reader :items
-# 	def initialize(item)
-# 		@items = item || Array.new(0)
-# 	end
-#
-# 	def add_item(item)
-# 		@items.push(item)
-# 	end
-#
-# 	def remove_item(item)
-# 	end
-# end
-
+def order
+	@order = Order.new
+end
 
 Given(/^Store has a "([^"]*)" on sale$/) do |product|
 	@iphone = Product.create!(name: product, brand: 'Apple', price: '600.00')
@@ -24,9 +13,11 @@ end
 
 When(/^I click on "([^"]*)"$/) do |add_to_cart|
 	click_button add_to_cart
-	@cart = Cart.new(@iphone)
+	order.add_item(@iphone.id)
 end
 
-Then(/^I should see "([^"]*)" in my cart$/) do |arg1|
-	expect(@cart).to include(@iphone)
+Then(/^I should see "([^"]*)" in my cart$/) do |item|
+	click_button 'close'
+	visit cart_path
+	expect(page).to have_content(item)
 end
