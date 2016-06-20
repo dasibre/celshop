@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
     @order.add_item(params[:id])
     @order.save
     session[:order_id] = @order.id
-    render json: total_cart_items
+    render json: order_items_count
   end
 
   def update

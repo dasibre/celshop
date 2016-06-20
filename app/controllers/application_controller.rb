@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_order, :total_cart_items
+  helper_method :current_order, :order_items_count
 
   def current_order
     if !session[:order_id].nil?
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def total_cart_items
+  def order_items_count
     current_order.item_quantity
   end
 

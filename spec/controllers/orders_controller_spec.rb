@@ -7,6 +7,7 @@ RSpec.describe OrdersController, type: :controller do
 
 	  before do
 		  allow(controller).to receive(:current_order).and_return(order)
+		  allow(controller).to receive(:order_items_count)
 		  allow(order).to receive(:add_item)
 		  allow(order).to receive(:save)
 		  allow(order).to receive(:id)
@@ -27,20 +28,11 @@ RSpec.describe OrdersController, type: :controller do
 		  expect(order).to receive(:save).and_return(true)
 		  post :create, id: '1'
 	  end
-  end
 
-  describe '#update' do
-    it 'returns http success' do
-      put :update, id: '1'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe '#destroy' do
-    it 'returns http success' do
-      post :destroy, id: '1'
-      expect(response).to have_http_status(:success)
-    end
+	  it 'responds with order item count' do
+		  expect(controller).to receive(:order_items_count)
+		  post :create, id: '1'
+	  end
   end
 
 end
