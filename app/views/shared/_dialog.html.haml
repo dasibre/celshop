@@ -1,0 +1,12 @@
+#dialog.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'myModalLabel', 'data-backdrop' => 'static', 'data-keyboard' => 'true', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h3.modal-title
+      .modal-body
+        %h2
+      .modal-footer
+        =button_tag 'Add to cart', remote: true, class: 'add-to-cart', id: 'changeme', data: {url: new_order_url }
+        =button_tag 'close', 'data-dismiss' => 'modal'
