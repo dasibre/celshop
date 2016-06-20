@@ -29,8 +29,12 @@ addItemToCart = (item)->
 		dataType: 'json',
 		url: url,
 		success: (data) ->
-			console.log(data)
+			updateCartItemCount(data)
 	})
+
+
+updateCartItemCount = (count)->
+	$('.badge').text(count)
 
 getProduct = (context,callback) ->
 	$product = $(context)
@@ -42,7 +46,6 @@ getProduct = (context,callback) ->
 		success: (data) ->
 			callback(data)
 	})
-
 
 displayModal = (modal,product) ->
 	modal.setElementAttr('.modal-footer button.add-to-cart','id',product.id)
