@@ -22,6 +22,7 @@ class Modal
 
 
 addItemToCart = (item)->
+	$('#dialog').modal('hide')
 	id =  item.attr('id')
 	url = item.data('url') + '/' + id
 	$.ajax({
