@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
 
   def index
-    @products = Product.all.sample(10)
+    @products = Product.all
   end
 
 end
